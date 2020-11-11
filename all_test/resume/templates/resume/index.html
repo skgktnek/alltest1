@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ALLTEST HOMEPAGE</title>
+    <link rel="stylesheet" href="{% static 'resume/style.css'%}" />
+</head>
+<body>
+    <h1 class="title">All_test</h1>
+    <img src="{% static 'resume/images/alltest.png' %}" alt="profile" />
+    <p>
+      안녕하세요, ALLTEST 입니다. 시험의 모든것.
+    </p>
+  
+    <h2>About Me</h2>
+    <ul>
+      <li>Email: jjangremy@naver.com</li>
+      <li>Instagram: love_itso</li>
+      <li>Phone: +82-10-0000-1234</li>    
+    </ul>
+  
+    <h2>Portfolios</h2>
+    <ol>
+      <li>Instagram Project: <a href="/posts/">#Link</a></li>
+      <li>...</li>
+    </ol>    
+</body>
+</html>

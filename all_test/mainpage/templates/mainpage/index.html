@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block style %}
+  <link rel="stylesheet" href="{% static 'mainpage/style.css'%}" />
+{% endblock %}
+
+{% block content %}
+
+<main role="main">
+
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron">
+      <div class="container">
+        <br>
+        
+        <br>
+        <h2 class="display-3">올테스트와 합격하자!</h2>
+        <p>여러분의 합격을 올테스트가 함께합니다.</p>
+        <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
+      
+        
+
+
+      </div>
+    </div>
+  
+    <div class="container">
+      <!-- Example row of columns -->
+      <div class="row">
+        <div class="col-md-4">
+          <h2>제 36회 한국사능력검정시험</h2>
+          <p>- 접수: 2020.10.31 ~ 2020.11.13</p>
+          <p>- 시험일: 2020.11.30</p>
+          <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+        </div>
+        <div class="col-md-4">
+          <h2>2020년 기사/산업기사 4회차</h2>
+          <p>- 접수: 2020.10.31 ~ 2020.11.13</p>
+          <p>- 시험일: 2020.11.30</p>
+          <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+        </div>
+        <div class="col-md-4">
+          <h2>2021 대입 수학능력검정시험</h2>
+          <p>- 접수: 2020.10.31 ~ 2020.11.13</p>
+          <p>- 시험일: 2020.11.30</p>
+          <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+        </div>
+      </div>
+  
+      <hr>
+  
+    </div> <!-- /container -->
+  
+  </main>
+  
+
+  
+
+{% endblock %}

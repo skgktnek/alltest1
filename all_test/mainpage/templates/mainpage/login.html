@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block style %}
+
+<style>
+    .bd-placeholder-img {
+      font-size: 1.125rem;
+      text-anchor: middle;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+
+    @media (min-width: 768px) {
+      .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+      }
+    }
+  </style>
+  <!-- Custom styles for this template -->
+  <link href="floating-labels.css" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'mainpage/style.css'%}" />
+{% endblock %}
+
+{% block content %}
+<br>
+<br>
+<div class="container">
+<form class="form-signin">
+    <div class="text-center mb-4">
+      
+      <h1 class="h3 mb-3 font-weight-normal">올테스트에 오신 것을 환영합니다.</h1>
+      <p>ID(이메일)와 패스워드를 입력해주세요.</p>
+    </div>
+  
+    <div class="form-label-group">
+      <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+      <label for="inputEmail">Email address</label>
+    </div>
+  
+    <div class="form-label-group">
+      <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+      <label for="inputPassword">Password</label>
+    </div>
+  
+    <div class="checkbox mb-3">
+      <label>
+        <input type="checkbox" value="remember-me"> Remember me
+      </label>
+    </div>
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+    
+  </form>
+</div>
+
+{% endblock %}

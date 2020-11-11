@@ -1,0 +1,35 @@
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Posts</title>
+</head>
+
+<body>
+  <!-- <img id="profile" src="{% static 'posts/images/nara.jpg' %}" alt="nara" />
+    <div class="profile_bg"></div> -->
+
+  <h1>My Posts</h1>
+
+  {% if posts %}
+  <ul>
+    {% for post in posts %}
+    <li>Author: {{ post.author }} | Body: {{ post.body }}</li>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <p>No Posts.</p>
+  {% endif %}
+
+  <h2>검색어를 입력하세요</h2>
+  <textarea cols=40 rows=10 name="body"></textarea>
+  <br>
+  <input type="submit" value="검색"/>
+</body>
+
+</html>

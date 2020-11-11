@@ -1,0 +1,17 @@
+
+#profile {
+    width: 400px;
+  }
+  
+  .profile_bg {
+    width: 400px;
+    height: 400px;
+    background-image: url("images/nara2.jpg");
+    background-position: center center;
+    background-size: cover;
+  }
+
+  body {
+    padding-top: 3.5rem;
+  }
+  
