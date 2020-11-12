@@ -1,0 +1,13 @@
+{% extends 'calendarapp/base.html' %}
+
+{% block content %}
+<div class="clearfix">
+    <a href="{% url 'calendarapp:calendar' %}?{{ prev_month }}"> Previous Month </a><a href="{% url 'calendarapp:calendar' %}?{{ next_month }}"> Next Month </a>
+    
+</div>
+<div style="color: blueviolet;">
+    {{ calendar }}
+</div>
+
+{% endblock %}
+
