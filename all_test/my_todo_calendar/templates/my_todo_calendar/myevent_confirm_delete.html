@@ -1,0 +1,17 @@
+{% extends 'my_todo_calendar/base.html' %}
+
+{% block title %}
+Delete Event 
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="clearfix">
+            <form method="post">{% csrf_token %}
+                <p>정말로 "{{ object }}"를 삭제하나요??</p>
+                <input type="submit" class="save btn btn-default" value="Confirm">
+            </form>
+         
+        </div>
+    </div>
+{% endblock %}

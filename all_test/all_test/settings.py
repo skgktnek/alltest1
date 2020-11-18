@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'resume',
     'mainpage',
     'accounts',
-    'calendarapp',
+    'my_todo_calendar',
+ 
 ]
 
 MIDDLEWARE = [
