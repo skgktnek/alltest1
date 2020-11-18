@@ -1,10 +1,10 @@
 from django.forms import ModelForm, DateInput
-from calendarapp.models import Event 
+from my_todo_calendar.models import MyEvent
 from django import forms
 
 class EventForm(ModelForm):
     class Meta:
-        model = Event
+        model = MyEvent
         widgets = {
             'start_time': DateInput(attrs={'type': 'datetime-local'}, format='%Y-%m-%dT%H:%M'),
             'end_time': DateInput(attrs={'type': 'datetime-local'}, format='%Y-%m-%dT%H:%M'),
@@ -15,3 +15,4 @@ class EventForm(ModelForm):
         super(EventForm, self).__init__(*args, **kwargs)
         self.fields['start_time'].input_formats = ('%Y-%m-%dT%H:%M',)
         self.fields['end_time'].input_formats = ('%Y-%m-%dT%H:%M',)
+
