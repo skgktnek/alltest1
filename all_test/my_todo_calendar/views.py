@@ -67,11 +67,14 @@ def create_event(request):
         return HttpResponseRedirect(reverse('my_todo_calendar:my_calendar'))
     return render(request, 'my_todo_calendar/event.html', {'form': form})
 
+<<<<<<< HEAD
 class EventDelete(generic.DeleteView):
     model = MyEvent
     success_url = '/my_todo_calendar/'
 
 
+=======
+>>>>>>> d65d8d4bd1948a1a239c6409c27388a5890588c0
 class EventEdit(generic.UpdateView):
     model = MyEvent
     fields = ['title', 'description', 'start_time', 'end_time']
