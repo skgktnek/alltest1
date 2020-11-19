@@ -42,10 +42,7 @@ INSTALLED_APPS = [
     'mainpage',
     'accounts',
     'my_todo_calendar',
-<<<<<<< HEAD
  
-=======
->>>>>>> d65d8d4bd1948a1a239c6409c27388a5890588c0
 ]
 
 MIDDLEWARE = [
