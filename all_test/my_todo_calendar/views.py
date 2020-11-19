@@ -80,3 +80,6 @@ def event_details(request, event_id):
     }
     return render(request, 'my_todo_calendar/event_details.html', context)
 
+class EventDelete(generic.DeleteView):
+    model = MyEvent
+    success_url = '/my_todo_calendar/'
