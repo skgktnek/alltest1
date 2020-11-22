@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block style %}
+  <link rel="stylesheet" href="{% static 'test_info/style.css'%}" />
+{% endblock %}
+
+{% block content %}
+<br>
+<br>
+    <div class="container">
+        <h1>Tests</h1>
+        <br>
+        {% if tests %}
+        
+        <table class="table">
+            <thead class="thead-dark">
+            
+                <tr>
+                    <th scope="col">#</th>
+                  
+                    <th scope="col">시험명</th>
+                    <th scope="col">게시일</th>
+                    <th scope="col">상세</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for test in tests %}
+                <tr>
+                    <th>{{ test.id }}</th>
+                 
+                    <td>{{ test.body }}</td>
+                    <td>{{ test.created_at }}</td>
+                    <td><a href="/test_info/{{ test.id }}">보기</a> </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+          <P>No Posts.</P>
+        {% endif %}
+        <a href="{% url 'test_info:new' %}">
+            <div class="btn-group" role="group" aria-label="Basic example">
+                <button type="button" class="btn btn-secondary">글쓰기</button>
+            </div>
+        </a>
+    </div>
+<br>
+<br>
+    
+
+
+{% endblock %}

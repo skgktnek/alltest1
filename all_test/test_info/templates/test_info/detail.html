@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block style %}
+  <link rel="stylesheet" href="{% static 'test_info/style.css'%}" />
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+   <h1>Test Detail</h1>
+   
+   {% if test.image %}
+    <div>
+      <img src="{{ test_info.image.url }}" alt="Test Image" />
+    </div>
+   {% endif %}
+
+
+   <div class="form-group">
+      <label for="author">작성자</label>
+      <input readonly class="form-control-plaintext" type="text" name="author" value="{{ test.user.get_username }}" />
+    </div>
+
+    <div class="form-group">
+      <label for="body">본문</label>
+      <textarea readonly class="form-control-plaintext" id="body" cols="40" rows="10" name="body">{{ test.body }}</textarea>
+    </div>
+
+    <div>{{ test.created_at }}</div>
+
+    <div>좋아요 수: {{ test.liked_users.count }}</div>
+
+    {% if user.is_authenticated %}
+      <form action="{% url 'test_info:like' test.id %}" method="POST">
+        {% csrf_token %}
+
+        {% if user in test.liked_users.all %}
+          <button type="submit" class="btn btn-primary">LIKE</button>
+        {% else %}
+          <button type="submit" class="btn btn-secondary">LIKE</button>
+        {% endif %}
+      </form>
+    {% endif %}
+
+
+    <a href="{% url 'test_info:index' %}">목록</a>
+    {% if user == test.user %}
+      <a href="{% url 'test_info:edit' test.id %}">수정하기</a>
+      <a href="{% url 'test_info:delete' test.id %}">삭제하기</a>
+    {% endif %}
+  </div>
+{% endblock %}
