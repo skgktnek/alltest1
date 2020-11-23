@@ -1,0 +1,102 @@
+{% extends 'my_todo_calendar/base.html' %}
+
+{% block title %}
+My Today 
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="clearfix">
+            <a class="btn btn-primary left" href="{% url 'my_todo_calendar:my_calendar' %}"> Calendar </a>
+
+        </div>
+        
+        <div class="container">
+            <h1>오늘은 몇점?</h1>
+            <div class="container">
+                <!-- <p id="star_grade">
+                    <a href="#">★</a>
+                    <a href="#">★</a>
+                    <a href="#">★</a>
+                    <a href="#">★</a>
+                    <a href="#">★</a>
+                </p>
+                <script>
+                    $('#star_grade a').click(function(){
+                        $(this).parent().children("a").removeClass("on");  /* 별점의 on 클래스 전부 제거 */ 
+                        $(this).addClass("on").prevAll("a").addClass("on"); /* 클릭한 별과, 그 앞 까지 별점에 on 클래스 추가 */
+                        return false;
+                    });
+                </script> -->
+                <div class="startRadio">
+                    <label class="startRadio__box">
+                        <input type="radio" name="star" id="">
+                        <span class="startRadio__img"><span class="blind">별 1개</span></span>
+                    </label>
+                    <label class="startRadio__box">
+                        <input type="radio" name="star" id="">
+                        <span class="startRadio__img"><span class="blind">별 1.5개</span></span>
+                    </label>
+                    <label class="startRadio__box">
+                        <input type="radio" name="star" id="">
+                        <span class="startRadio__img"><span class="blind">별 2개</span></span>
+                    </label>
+                    <label class="startRadio__box">
+                        <input type="radio" name="star" id="">
+                        <span class="startRadio__img"><span class="blind">별 2.5개</span></span>
+                    </label>
+                    <label class="startRadio__box">
+                        <input type="radio" name="star" id="">
+                        <span class="startRadio__img"><span class="blind">별 3개</span></span>
+                    </label>
+                    <label class="startRadio__box">
+                        <input type="radio" name="star" id="">
+                        <span class="startRadio__img"><span class="blind">별 3.5개</span></span>
+                    </label>
+                    <label class="startRadio__box">
+                        <input type="radio" name="star" id="">
+                        <span class="startRadio__img"><span class="blind">별 4개</span></span>
+                    </label>
+                    <label class="startRadio__box">
+                        <input type="radio" name="star" id="">
+                        <span class="startRadio__img"><span class="blind">별 4.5개</span></span>
+                    </label>
+                    <label class="startRadio__box">
+                        <input type="radio" name="star" id="">
+                        <span class="startRadio__img"><span class="blind">별 5개</span></span>
+                    </label>
+                    <label class="startRadio__box">
+                        <input type="radio" name="star" id="">
+                        <span class="startRadio__img"><span class="blind">별 5.5개</span></span>
+                    </label>
+                </div>
+            </div>        
+            
+            <h2>{{ year }}-{{ month }}-{{ day }} 마감일정</h2>
+            {% if events %}
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Title</th>
+                        <th>Description</th>                    
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for event in events %}
+                    <tr>
+                        <th>{{ event.title }}</th>
+                        <th>{{ event.description }}</th>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+               
+            </table>
+            {% else %}
+                <p>No Events.</p>
+            {% endif %}
+        </div>
+        
+                    
+           
+    </div>
+{% endblock %}

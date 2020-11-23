@@ -19,7 +19,7 @@ class Calendar(HTMLCalendar):
             d += f'<li> {event.get_html_url} </li>'
 
         if day != 0: 
-            return f"<td><span class='date'>{day}</span><ul> {d} </ul></td>"
+            return f"<td><span class='date'><a href='my_today/{self.year}/{self.month}/{day}'>{day}</a></span><ul> {d} </ul></td>"
         return '<td></td>'
 
     def formatweek(self, theweek, events):

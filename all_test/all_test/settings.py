@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'mainpage',
     'accounts',
     'my_todo_calendar',
+    'my_test_calendar', 
  
 ]
 

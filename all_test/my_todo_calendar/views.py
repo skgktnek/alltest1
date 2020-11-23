@@ -8,10 +8,30 @@ import calendar
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse, reverse_lazy
+import pandas
+
 
 from .models import MyEvent
 from .utils import Calendar
 from .forms import EventForm
+
+def index(request):
+    events = MyEvent.objects.all()
+    for event in events:
+        start_time = event.start_time
+        end_time = event.end_time
+        # datelist = [ ]
+        # datelist.append(start_time)
+
+    # form_to = pandas.date_range(start=start_time, end=end_time)
+    # start_time = '2020-04-20'
+    # end_time = '2020-04-21'
+    form_to = pandas.date_range(start=start_time, end=end_time)
+    context = {
+      
+        'from_to' : form_to
+    }
+    return render(request, 'my_todo_calendar/index.html', context)
 
 def get_date(req_day):
     if req_day:
@@ -74,8 +94,20 @@ class EventDelete(generic.DeleteView):
 
 class EventEdit(generic.UpdateView):
     model = MyEvent
+    form = EventForm()
     fields = ['title', 'description', 'start_time', 'end_time']
     template_name = 'my_todo_calendar/event.html'
+
+    def form_valid(self, form):
+        form.save()
+        return render(self.request, 'my_todo_calendar/event_edit_success.html', {"message" : "일정 업데이트 완료"})
+
+    def get(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        form_class = self.get_form_class()
+        form = self.get_form(form_class)
+        context = self.get_context_data(object=self.object, form=form)
+        return self.render_to_response(context)
 
 @login_required(login_url='accounts:login')
 def event_details(request, event_id):
@@ -85,6 +117,15 @@ def event_details(request, event_id):
     }
     return render(request, 'my_todo_calendar/event_details.html', context)
 
-class EventDelete(generic.DeleteView):
-    model = MyEvent
-    success_url = '/my_todo_calendar/'
+@login_required(login_url='accounts:login')
+def my_today(request, year, month, day):
+    events = MyEvent.objects.filter(start_time__year=year, start_time__month=month, end_time__day = day, user=request.user)
+    context = {
+        'events' : events,
+        'year' : year,
+        'month' : month,
+        'day' : day,
+    }
+    return render(request, 'my_todo_calendar/my_today.html', context)
+
+

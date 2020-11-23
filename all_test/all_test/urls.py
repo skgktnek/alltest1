@@ -23,5 +23,6 @@ urlpatterns = [
     path('mainpage/', include('mainpage.urls')),
     path('accounts/', include('accounts.urls')),
     path('my_todo_calendar/', include('my_todo_calendar.urls')),
-
+    path('my_test_calendar/', include('my_test_calendar.urls')),
+ 
 ]
