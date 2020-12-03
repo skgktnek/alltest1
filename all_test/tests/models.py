@@ -15,6 +15,7 @@ class Test(models.Model):
     results_day = models.DateTimeField()
     test_fee = models.DecimalField(max_digits = 10, decimal_places = 2, null=True)
     detail = models.CharField(max_length=200, null=True)
+    liked_users = models.ManyToManyField(User, through='Mytests')
 
  
 
@@ -29,6 +30,10 @@ class Test(models.Model):
         url = reverse('my_todo_calendar:event-detail', args=(self.id,))
       
         return f'<a href="{url}"> {self.title} </a>'
+
+class Mytests(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    test = models.ForeignKey(Test, on_delete=models.CASCADE)
 
 
 

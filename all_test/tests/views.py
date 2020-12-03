@@ -62,3 +62,21 @@ def detail(request, test_id):
     context = { 'test' : test }
     return render(request, 'tests/detail.html', context)
 
+@login_required
+def like(request, test_id):
+
+    if request.method == 'POST':
+        try:
+            test = Test.objects.get(id=test_id)
+
+            if request.user in test.liked_users.all():
+                test.liked_users.remove(request.user)
+            else:
+                test.liked_users.add(request.user)
+
+            return redirect('tests:detail', test_id=test.id)
+
+        except Test.DoesNotExist:
+            pass
+
+    return redirect('tests:index')

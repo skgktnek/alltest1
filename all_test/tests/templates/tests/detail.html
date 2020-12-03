@@ -46,6 +46,20 @@
         <input readonly class="form-control-plaintext" type="text" name="author" value="{{ test.fee }}" />
     </div>
 
+    <div>이 시험을 좋아한 사람의 수: {{ test.liked_users.count }}</div>
+
+    {% if user.is_authenticated %}
+      <form action="{% url 'tests:like' test.id %}" method="POST">
+        {% csrf_token %}
+
+        {% if user in test.liked_users.all %}
+          <button type="submit" class="btn btn-primary">LIKE</button>
+        {% else %}
+          <button type="submit" class="btn btn-secondary">LIKE</button>
+        {% endif %}
+      </form>
+    {% endif %} -->
+
 
     <a href="{% url 'tests:index' %}">목록</a>
   </div>
