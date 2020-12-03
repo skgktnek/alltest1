@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'accounts',
     'my_todo_calendar',
     'my_test_calendar', 
+    'tests',
  
 ]
 

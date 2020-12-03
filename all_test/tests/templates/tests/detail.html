@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block style %}
+  <link rel="stylesheet" href="{% static 'tests/style.css'%}" />
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <h1>Test Detail</h1>
+   
+    <div class="form-group">
+      <label for="author">시험명</label>
+      <input readonly class="form-control-plaintext" type="text" name="author" value="{{ test.title }}" />
+    </div>
+
+    <div class="form-group">
+        <label for="author">회차</label>
+        <input readonly class="form-control-plaintext" type="text" name="author" value="{{ test.test_round }}" />
+    </div>
+
+    <div class="form-group">
+        <label for="author">시험일</label>
+        <input readonly class="form-control-plaintext" type="text" name="author" value="{{ test.test_day }}" />
+    </div>
+
+    <div class="form-group">
+        <label for="author">시험등록시작일</label>
+        <input readonly class="form-control-plaintext" type="text" name="author" value="{{ test.register_day_start }}" />
+    </div>
+
+    <div class="form-group">
+        <label for="author">시험등록마감일</label>
+        <input readonly class="form-control-plaintext" type="text" name="author" value="{{ test.register_day_end }}" />
+    </div>
+
+    <div class="form-group">
+        <label for="author">결과발표일</label>
+        <input readonly class="form-control-plaintext" type="text" name="author" value="{{ test.results_day }}" />
+    </div>
+
+    <div class="form-group">
+        <label for="author">시험비용</label>
+        <input readonly class="form-control-plaintext" type="text" name="author" value="{{ test.fee }}" />
+    </div>
+
+
+    <a href="{% url 'tests:index' %}">목록</a>
+  </div>
+{% endblock %}

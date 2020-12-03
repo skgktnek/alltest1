@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block style %}
+  <link rel="stylesheet" href="{% static 'tests/style.css' %}" />
+{% endblock %}
+
+{% block content %}
+<br>
+<br>
+    <div class="container">
+        <h1>Tests</h1>
+        <br>
+        {% if tests %}
+        
+        <table class="table">
+            <thead class="thead-dark">
+            
+                <tr>
+                    <th scope="col">#</th>
+                  
+                    <th scope="col">시험명</th>
+                    <th scope="col">회차</th>
+                    <th scope="col">상세</th>
+                   
+                </tr>
+            </thead>
+            <tbody>
+                {% for test in tests %}
+                <tr>
+                    <th>{{ test.id }}</th> 
+                    <th>{{ test.title }}</th>                
+                    <td>{{ test.test_round }}</td>
+                    <td><a href="/tests/{{ test.id }}">보기</a> </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+          <P>No Posts.</P>
+        {% endif %}
+    </div>
+<br>
+<br>
+{% endblock %}

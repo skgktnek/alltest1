@@ -8,7 +8,7 @@ import calendar
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse, reverse_lazy
-import pandas
+# import pandas
 
 
 from .models import MyEvent
@@ -17,20 +17,20 @@ from .forms import EventForm
 
 def index(request):
     events = MyEvent.objects.all()
-    for event in events:
-        start_time = event.start_time
-        end_time = event.end_time
-        # datelist = [ ]
-        # datelist.append(start_time)
+    # for event in events:
+    #     start_time = event.start_time
+    #     end_time = event.end_time
+    #     # datelist = [ ]
+    #     # datelist.append(start_time)
 
+    # # form_to = pandas.date_range(start=start_time, end=end_time)
+    # # start_time = '2020-04-20'
+    # # end_time = '2020-04-21'
     # form_to = pandas.date_range(start=start_time, end=end_time)
-    # start_time = '2020-04-20'
-    # end_time = '2020-04-21'
-    form_to = pandas.date_range(start=start_time, end=end_time)
-    context = {
+    # context = {
       
-        'from_to' : form_to
-    }
+    #     'from_to' : form_to
+    # }
     return render(request, 'my_todo_calendar/index.html', context)
 
 def get_date(req_day):

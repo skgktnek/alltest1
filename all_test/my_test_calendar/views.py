@@ -8,7 +8,7 @@ import calendar
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse, reverse_lazy
-import pandas
+# import pandas
 
 
 from .models import Test
