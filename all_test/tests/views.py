@@ -11,10 +11,46 @@ from django.urls import reverse, reverse_lazy
 # import pandas
 
 
-from .models import Test
+from .models import Test, Mytests
 from .utils import Calendar
 from .forms import TestForm
 
+@login_required
+def trial(request):
+    user = []
+    user.append(request.user)
+    mytests = Test.objects.filter(liked_users__in=user)
+    # mytests = Mytests.objects.filter(user=request.user).values('test')
+    # test_id_list = []
+    # for mytest in mytests:
+    #     test_id = mytest.values()
+    #     test_id_list.append(test_id)
+
+
+
+    #     # tests = Test.objects.filter(pk=test_id)
+
+    context = {
+      
+       'tests' : mytests
+    }
+    return render(request, 'tests/trial.html', context)
+
+    # for event in events:
+    #     start_time = event.start_time
+    #     end_time = event.end_time
+    #     # datelist = [ ]
+    #     # datelist.append(start_time)
+
+    # # form_to = pandas.date_range(start=start_time, end=end_time)
+    # # start_time = '2020-04-20'
+    # # end_time = '2020-04-21'
+    # form_to = pandas.date_range(start=start_time, end=end_time)
+    # context = {
+      
+    #     'from_to' : form_to
+    # }
+    
 
 
 def get_date(req_day):

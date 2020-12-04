@@ -1,7 +1,7 @@
 from datetime import datetime, timedelta
 from calendar import HTMLCalendar
 
-from .models import Test
+from .models import Test, Mytests
 
 
 class Calendar(HTMLCalendar):
@@ -11,11 +11,11 @@ class Calendar(HTMLCalendar):
         self.month = month
         super(Calendar, self).__init__()
 
-    def formatday(self, day, tests):
-        tests_register_day_start_per_day = tests.filter(register_day_start__day=day) 
-       	tests_register_day_end_per_day = tests.filter(register_day_end__day=day) 
-        tests_test_day_per_day = tests.filter(test_day__day=day) 
-        tests_results_day_per_day = tests.filter(results_day__day=day)   
+    def formatday(self, day, mytests):
+        tests_register_day_start_per_day = mytests.filter(register_day_start__day=day) 
+       	tests_register_day_end_per_day = mytests.filter(register_day_end__day=day) 
+        tests_test_day_per_day = mytests.filter(test_day__day=day) 
+        tests_results_day_per_day = mytests.filter(results_day__day=day)   
         rs = ''
         re = ''
         t = ''
@@ -37,18 +37,21 @@ class Calendar(HTMLCalendar):
             return f"<td><span class='date'><a href='my_today/{self.year}/{self.month}/{day}'>{day}</a></span><ul> {rs}{re}{t}{r}</ul></td>"
         return '<td></td>'
 
-    def formatweek(self, theweek, tests):
+    def formatweek(self, theweek, mytests):
         week =''
         for d, weekday in theweek:
-            week += self.formatday(d, tests)
+            week += self.formatday(d, mytests)
         return f'<tr> {week} </tr>'
     
     def formatmonth(self, withyear=True):
-        tests = Test.objects.filter(register_day_start__year=self.year, register_day_start__month=self.month) | Test.objects.filter(register_day_end__year=self.year, register_day_end__month=self.month) | Test.objects.filter(test_day__year=self.year, test_day__month=self.month) | Test.objects.filter(results_day__year=self.year, results_day__month=self.month)   
+        # user = []
+        # user.append(self.user)
+        # mytests = Test.objects.filter(liked_users__in=user)
+        mytests = Mytests.objects.firstfilter(register_day_start__year=self.year, register_day_start__month=self.month) | Mytests.objects.filter(register_day_end__year=self.year, register_day_end__month=self.month) | Mytests.objects.filter(test_day__year=self.year, test_day__month=self.month) | Mytests.objects.filter(results_day__year=self.year, results_day__month=self.month)   
         cal = f'<table border="0" cellpadding="0" cellspacing="0" class="calendar">\n'
         cal += f'{self.formatmonthname(self.year, self.month, withyear=withyear)}\n'
         cal += f'{self.formatweekheader()}\n'
         for week in self.monthdays2calendar(self.year, self.month):
-            cal += f'{self.formatweek(week, tests)}\n'
+            cal += f'{self.formatweek(week, mytests)}\n'
         return cal
         

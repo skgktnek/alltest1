@@ -104,8 +104,7 @@ class EventEdit(generic.UpdateView):
 
     def get(self, request, *args, **kwargs):
         self.object = self.get_object()
-        form_class = self.get_form_class()
-        form = self.get_form(form_class)
+        form = self.get_form(EventForm)
         context = self.get_context_data(object=self.object, form=form)
         return self.render_to_response(context)
 
