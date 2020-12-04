@@ -17,9 +17,9 @@ from .forms import TestForm
 
 @login_required
 def trial(request):
-    user = []
-    user.append(request.user)
-    mytests = Test.objects.filter(liked_users__in=user)
+    user_list = []
+    user_list.append(request.user)
+    mytests = Test.objects.filter(liked_users__in=user_list)
     # mytests = Mytests.objects.filter(user=request.user).values('test')
     # test_id_list = []
     # for mytest in mytests:
@@ -79,7 +79,8 @@ class TestCalendarView(generic.ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         d = get_date(self.request.GET.get('month', None))
-        cal = Calendar(d.year, d.month)
+        user = self.request.user
+        cal = Calendar(d.year, d.month, user)
         html_cal = cal.formatmonth(withyear=True)
         context['calendar'] = mark_safe(html_cal)
         context['prev_month'] = prev_month(d)

@@ -2,6 +2,7 @@ from datetime import datetime, timedelta
 from calendar import HTMLCalendar
 
 from .models import Test, Mytests
+from django.contrib.auth.decorators import login_required
 
 
 class Calendar(HTMLCalendar):
@@ -33,6 +34,18 @@ class Calendar(HTMLCalendar):
         for test_results_day in tests_results_day_per_day:
             r += f'<li> {test_results_day.get_html_url} -시험결과발표일 </li>'
 
+        #for test_register_day_start in mytests:
+        #     rs += f'<li> {test_register_day_start.get_html_url} -시험등록시작일 </li>'
+
+        # for test_register_day_end in mytests:
+        #     re += f'<li> {test_register_day_end.get_html_url} -시험등록마감일 </li>'
+
+        # for test_test_day in mytests:
+        #     t += f'<li> {test_test_day.get_html_url} -시험일 </li>'
+
+        # for test_results_day in mytests:
+        #     r += f'<li> {test_results_day.get_html_url} -시험결과발표일 </li>'
+
         if day != 0: 
             return f"<td><span class='date'><a href='my_today/{self.year}/{self.month}/{day}'>{day}</a></span><ul> {rs}{re}{t}{r}</ul></td>"
         return '<td></td>'
@@ -44,10 +57,11 @@ class Calendar(HTMLCalendar):
         return f'<tr> {week} </tr>'
     
     def formatmonth(self, withyear=True):
-        # user = []
-        # user.append(self.user)
-        # mytests = Test.objects.filter(liked_users__in=user)
-        mytests = Mytests.objects.firstfilter(register_day_start__year=self.year, register_day_start__month=self.month) | Mytests.objects.filter(register_day_end__year=self.year, register_day_end__month=self.month) | Mytests.objects.filter(test_day__year=self.year, test_day__month=self.month) | Mytests.objects.filter(results_day__year=self.year, results_day__month=self.month)   
+        user_list = []
+        user_list.append(self.user)
+        mytests = Test.objects.filter(liked_users__in=user_list)
+        mytests = mytests.filter(register_day_start__year=self.year, register_day_start__month=self.month) | mytests.filter(register_day_end__year=self.year, register_day_end__month=self.month) | mytests.filter(test_day__year=self.year, test_day__month=self.month) | mytests.filter(results_day__year=self.year, results_day__month=self.month)   
+        #mytests = Mytests.objects.firstfilter(register_day_start__year=self.year, register_day_start__month=self.month) | Mytests.objects.filter(register_day_end__year=self.year, register_day_end__month=self.month) | Mytests.objects.filter(test_day__year=self.year, test_day__month=self.month) | Mytests.objects.filter(results_day__year=self.year, results_day__month=self.month)   
         cal = f'<table border="0" cellpadding="0" cellspacing="0" class="calendar">\n'
         cal += f'{self.formatmonthname(self.year, self.month, withyear=withyear)}\n'
         cal += f'{self.formatweekheader()}\n'
