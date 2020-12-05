@@ -1,16 +1,26 @@
-{% extends 'my_todo_calendar/base.html' %}
+{% extends "tests/base.html" %}
+
+{% load static %}
 
 {% block content %}
+<br>
+<br>
 <div class="clearfix">
-    <span class="left m-2" style="font-size: 20px;">Welcome, {{ request.user }}</span>
-    <a href="{% url 'tests:my_test_calendar' %}?{{ prev_month }}"> Previous Month </a>
-    <a href="{% url 'tests:my_test_calendar' %}?{{ next_month }}"> Next Month </a>
- 
+        <br>
+        <br>
+        <br>
+        <br>
+
+        <!-- <span class="left m-2" style="font-size: 20px;">Welcome, {{ request.user }}</span> -->
+        <a href="{% url 'tests:my_test_calendar' %}?{{ prev_month }}"> Previous Month / </a>
+        <a href="{% url 'tests:my_test_calendar' %}?{{ next_month }}"> Next Month </a>
     
+        
 </div>
 <div style="color: blueviolet;">
     {{ calendar }}
 </div>
-
+<br>
+<br>
 {% endblock %}
 

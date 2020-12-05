@@ -1,10 +1,15 @@
 {% extends 'my_todo_calendar/base.html' %}
 
-{% block title %}
+{% load static %}
+
+<!-- {% block title %}
 Event Details
-{% endblock %}
+{% endblock %} -->
 
 {% block content %}
+<br>
+<br>
+
     <div class="container">
         <div class="clearfix">
             <a class="btn btn-primary left" href="{% url 'my_todo_calendar:my_calendar' %}"> Calendar </a>

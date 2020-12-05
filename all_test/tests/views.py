@@ -7,7 +7,9 @@ from datetime import timedelta
 import calendar
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.utils.decorators import method_decorator
 from django.urls import reverse, reverse_lazy
+
 # import pandas
 
 
@@ -17,24 +19,7 @@ from .forms import TestForm
 
 @login_required
 def trial(request):
-    user_list = []
-    user_list.append(request.user)
-    mytests = Test.objects.filter(liked_users__in=user_list)
-    # mytests = Mytests.objects.filter(user=request.user).values('test')
-    # test_id_list = []
-    # for mytest in mytests:
-    #     test_id = mytest.values()
-    #     test_id_list.append(test_id)
-
-
-
-    #     # tests = Test.objects.filter(pk=test_id)
-
-    context = {
-      
-       'tests' : mytests
-    }
-    return render(request, 'tests/trial.html', context)
+    return render(request, 'tests/base_calendar.html')
 
     # for event in events:
     #     start_time = event.start_time
@@ -72,9 +57,9 @@ def next_month(d):
     month = 'month=' + str(next_month.year) + '-' + str(next_month.month)
     return month
 
-class TestCalendarView(generic.ListView):
+class TestCalendarView(LoginRequiredMixin, generic.ListView):
     model = Test
-    template_name = 'my_test_calendar/calendar.html'
+    template_name = 'tests/calendar.html'
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

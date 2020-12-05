@@ -4,7 +4,7 @@
 My Today 
 {% endblock %}
 
-{% block content %}
+{% block my_todo_content %}
     <div class="container">
         <div class="clearfix">
             <a class="btn btn-primary left" href="{% url 'my_todo_calendar:my_calendar' %}"> Calendar </a>
@@ -12,8 +12,8 @@ My Today
         </div>
         
         <div class="container">
-            <h1>오늘은 몇점?</h1>
-            <div class="container">
+            <!-- <h1>오늘은 몇점?</h1> -->
+            <!-- <div class="container"> -->
                 <!-- <p id="star_grade">
                     <a href="#">★</a>
                     <a href="#">★</a>
@@ -28,7 +28,7 @@ My Today
                         return false;
                     });
                 </script> -->
-                <div class="startRadio">
+                <!-- <div class="startRadio">
                     <label class="startRadio__box">
                         <input type="radio" name="star" id="">
                         <span class="startRadio__img"><span class="blind">별 1개</span></span>
@@ -71,8 +71,8 @@ My Today
                     </label>
                 </div>
             </div>        
-            
-            <h2>{{ year }}-{{ month }}-{{ day }} 마감일정</h2>
+             -->
+            <h1>{{ year }}-{{ month }}-{{ day }} 마감일정</h1>
             {% if events %}
             <table class="table">
                 <thead class="thead-dark">

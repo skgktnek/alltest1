@@ -1,14 +1,20 @@
-{% extends "base.html" %}
-
 {% load static %}
-{% block style %}
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css">
   <link rel="stylesheet" type="text/css" href="{% static 'my_todo_calendar/style.css' %}">
-{% endblock %}
+  <title>Django Calendar App</title>
+</head>
+<body>
 
-{% block content %}
-  {% block my_todo_content %}
+  {% block content %}
 
   {% endblock %}
 
@@ -23,5 +29,5 @@
 
   {% block script %}
   {% endblock %}
-  
-{% endblock %}
+</body>
+</html>
